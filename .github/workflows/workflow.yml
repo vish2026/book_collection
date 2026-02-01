@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "run_test" ]
+    branches: [ "heroku_review" ]
   pull_request:
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
       PGPASSWORD: postgres
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Ruby
@@ -39,10 +39,9 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Prepare DB
+      - name: Prepare test database
         run: |
           bundle exec rails db:create db:schema:load
 
       - name: Run RSpec
         run: bundle exec rspec
-
