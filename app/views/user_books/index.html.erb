@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>User Books</h1>
+
+<p>
+  <%= link_to "Books", books_path %> |
+  <%= link_to "Users", users_path %> |
+  <%= link_to "New User Book", new_user_book_path %>
+</p>
+
+<div id="user_books">
+  <% @user_books.each do |user_book| %>
+    <p>
+      <strong>User:</strong> <%= user_book.user.username %><br>
+      <strong>Book:</strong> <%= user_book.book.title %>
+    </p>
+
+    <p>
+      <%= link_to "Show this user book", user_book %>
+    </p>
+
+    <hr>
+  <% end %>
+</div>
+
